@@ -27,8 +27,8 @@ jobs:
             ARTIFACT_REGISTRY: ${{ secrets.ARTIFACT_REGISTRY }}
             BACKEND_URL: ${{ secrets.BACKEND_URL }}
           run: | 
-            docker build -t ${{ secrets.ARTIFACT_REGISTRY }}/hack-aso-grupo-04:latest --build-arg BACKEND_URL=${{ secrets.BACKEND_URL }} .
-            docker push ${{ secrets.ARTIFACT_REGISTRY }}/hack-aso-grupo-04:latest
+            docker build -t ${{ secrets.ARTIFACT_REGISTRY }}/hack-aso-grupo-04-front:latest --build-arg BACKEND_URL=${{ secrets.BACKEND_URL }} .
+            docker push ${{ secrets.ARTIFACT_REGISTRY }}/hack-aso-grupo-04-front:latest
 
         - name: Show file
           run: cat src/App.js
@@ -51,10 +51,10 @@ jobs:
       - name: Deploy Frontend no Cloud Run
         id: deploy
         run: |-
-          gcloud run deploy hack-aso-grupo-04 \
+          gcloud run deploy hack-aso-grupo-04-front \
             --quiet \
             --region  ${{ secrets.GOOGLE_REGION }} \
-            --image ${{ secrets.ARTIFACT_REGISTRY }}/hack-aso-grupo-04:latest \
+            --image ${{ secrets.ARTIFACT_REGISTRY }}/hack-aso-grupo-04-front:latest \
             --platform managed \
             --allow-unauthenticated \
             --project ${{ secrets.GOOGLE_PROJECT_ID }} \
