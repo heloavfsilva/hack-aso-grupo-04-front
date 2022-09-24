@@ -27,8 +27,8 @@ jobs:
             ARTIFACT_REGISTRY: ${{ secrets.ARTIFACT_REGISTRY }}
             BACKEND_URL: ${{ secrets.BACKEND_URL }}
           run: | 
-            docker build -t ${{ secrets.ARTIFACT_REGISTRY }}/frontend:latest --build-arg BACKEND_URL=${{ secrets.BACKEND_URL }} .
-            docker push ${{ secrets.ARTIFACT_REGISTRY }}/frontend:latest
+            docker build -t ${{ secrets.ARTIFACT_REGISTRY }}/hack-aso-grupo-04:latest --build-arg BACKEND_URL=${{ secrets.BACKEND_URL }} .
+            docker push ${{ secrets.ARTIFACT_REGISTRY }}/hack-aso-grupo-04:latest
 
         - name: Show file
           run: cat src/App.js
